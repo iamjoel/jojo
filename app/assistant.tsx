@@ -1,7 +1,7 @@
 "use client";
 
 import { AssistantRuntimeProvider } from "@assistant-ui/react";
-import { useChatRuntime } from "@assistant-ui/react-ai-sdk";
+import { useAISDKRuntime } from "@assistant-ui/react-ai-sdk";
 // import { useDataStreamRuntime } from '@assistant-ui/react-data-stream'
 import { Thread } from "@/components/assistant-ui/thread";
 import {
@@ -18,13 +18,33 @@ import {
   BreadcrumbList,
 } from "@/components/ui/breadcrumb";
 import WeatherToolUI from "@/app/tools/weather/ui";
+import { useParams } from "next/navigation";
+import { useChat } from '@ai-sdk/react';
+import { DefaultChatTransport, UIMessage } from "ai";
 
-export const Assistant = () => {
-  // Server: 500
-  // const runtime = useDataStreamRuntime({
-  //   api: "/api/chat" // custom API endpoint for chat
-  // })
-  const runtime = useChatRuntime();
+type Props = {
+  category: string;
+  initialMessages: UIMessage[]
+}
+export const Assistant = ({
+  category,
+  initialMessages
+}: Props) => {
+  const { id } = useParams();
+
+  const chat = useChat({
+    messages: initialMessages,
+    transport: new DefaultChatTransport({
+      api: '/api/chat',
+      // only send the last message to the server:
+      prepareSendMessagesRequest({ messages }) {
+        return { body: { message: messages[messages.length - 1], id, category } };
+      },
+    }),
+  })
+  const runtime = useAISDKRuntime(chat);
+  // get id from url params
+
 
   return (
     <AssistantRuntimeProvider runtime={runtime}>

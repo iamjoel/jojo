@@ -28,6 +28,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 * General agent:
   * Mocked Weather information(Generate ui).
   * Support attach image.
+  * Support saving the thread.
 
 ## TODO
 - Support saving the threads.
