@@ -6,6 +6,11 @@ import {
   BranchPickerPrimitive,
   ErrorPrimitive,
 } from "@assistant-ui/react";
+import {
+  ComposerAttachments,
+  ComposerAddAttachment,
+  UserMessageAttachments,
+} from "@/components/assistant-ui/attachment"
 import type { FC } from "react";
 import {
   ArrowDownIcon,
@@ -180,6 +185,8 @@ const Composer: FC = () => {
       </ThreadPrimitive.Empty>
       {/* aui-composer-root */}
       <ComposerPrimitive.Root className="focus-within::ring-offset-2 relative flex w-full flex-col rounded-2xl focus-within:ring-2 focus-within:ring-black dark:focus-within:ring-white">
+        <ComposerAttachments />
+        <ComposerAddAttachment />
         {/* aui-composer-input */}
         <ComposerPrimitive.Input
           placeholder="Send a message..."
@@ -200,7 +207,7 @@ const ComposerAction: FC = () => {
   return (
     // aui-composer-action-wrapper
     <div className="bg-muted border-border dark:border-muted-foreground/15 relative flex items-center justify-between rounded-b-2xl border-x border-b p-2">
-      <TooltipIconButton
+      {/* <TooltipIconButton
         tooltip="Attach file"
         variant="ghost"
         // aui-composer-attachment-button
@@ -210,7 +217,7 @@ const ComposerAction: FC = () => {
         }}
       >
         <PlusIcon />
-      </TooltipIconButton>
+      </TooltipIconButton> */}
 
       <ThreadPrimitive.If running={false}>
         <ComposerPrimitive.Send asChild>
@@ -337,6 +344,7 @@ const UserMessage: FC = () => {
           <MessagePrimitive.Content components={{ Text: MarkdownText }} />
         </div>
 
+        <UserMessageAttachments />
         {/* aui-user-branch-picker */}
         <BranchPicker className="col-span-full col-start-1 row-start-3 -mr-1 justify-end" />
       </motion.div>

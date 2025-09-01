@@ -2,6 +2,7 @@
 
 import { AssistantRuntimeProvider } from "@assistant-ui/react";
 import { useChatRuntime } from "@assistant-ui/react-ai-sdk";
+// import { useDataStreamRuntime } from '@assistant-ui/react-data-stream'
 import { Thread } from "@/components/assistant-ui/thread";
 import {
   SidebarInset,
@@ -19,6 +20,10 @@ import {
 import WeatherToolUI from "@/app/tools/weather/ui";
 
 export const Assistant = () => {
+  // Server: 500
+  // const runtime = useDataStreamRuntime({
+  //   api: "/api/chat" // custom API endpoint for chat
+  // })
   const runtime = useChatRuntime();
 
   return (
