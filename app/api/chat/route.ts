@@ -1,3 +1,4 @@
+import { weatherTool } from "@/app/tools/weather/tool";
 import { openai } from "@ai-sdk/openai";
 import {
   streamText,
@@ -10,6 +11,9 @@ export async function POST(req: Request) {
   const result = streamText({
     model: openai("gpt-4o"),
     messages: convertToModelMessages(messages),
+    tools: {
+      getWeather: weatherTool
+    }
   });
 
   return result.toUIMessageStreamResponse();

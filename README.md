@@ -24,4 +24,11 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Feature
+* General agent:
+  * Mocked Weather information(Generate ui).
+
+## TODO
+- Support saving the threads.
+- Some agents with different logic.
+

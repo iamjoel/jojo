@@ -16,6 +16,7 @@ import {
   BreadcrumbLink,
   BreadcrumbList,
 } from "@/components/ui/breadcrumb";
+import WeatherToolUI from "@/app/tools/weather/ui";
 
 export const Assistant = () => {
   const runtime = useChatRuntime();
@@ -41,6 +42,8 @@ export const Assistant = () => {
             </header>
             <div className="flex-1 overflow-hidden">
               <Thread />
+              {/* Tools UI */}
+              <WeatherToolUI />
             </div>
           </SidebarInset>
         </div>
